@@ -1,0 +1,19 @@
+#!/usr/bin/php
+<?php
+
+use Egorov\Strategy\Calculator;
+
+require __DIR__ . '/../../vendor/autoload.php';
+
+$plus = new Calculator('+');
+$subs = new Calculator('-');
+$div = new Calculator('/');
+$mult = new Calculator('*');
+
+$a = 17;
+$b = 25;
+
+echo $plus->calculate($a, $b) . "\n";
+echo $subs->calculate($a, $b) . "\n";
+echo $div->calculate($a, $b) . "\n";
+echo $mult->calculate($a, $b) . "\n";
