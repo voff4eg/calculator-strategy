@@ -3,9 +3,10 @@
 namespace Egorov\Tests;
 
 use Egorov\Strategy\Calculator;
+use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
-class CalculatorTest extends \PHPUnit\Framework\TestCase
+class CalculatorTest extends TestCase
 {
     /**
      * @throws \Exception
