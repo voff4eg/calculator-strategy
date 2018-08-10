@@ -6,7 +6,7 @@ use Egorov\Strategy\Calculator;
 require __DIR__ . '/../../vendor/autoload.php';
 
 $plusCalculator = new Calculator('+');
-$subscribeCalculator = new Calculator('-');
+$minusCalculator = new Calculator('-');
 $divideCalculator = new Calculator('/');
 $multiplyCalculator = new Calculator('*');
 
@@ -14,6 +14,6 @@ $firstArgument = 17;
 $secondArgument = 25;
 
 echo $plusCalculator->calculate($firstArgument, $secondArgument) . "\n";
-echo $subscribeCalculator->calculate($firstArgument, $secondArgument) . "\n";
+echo $minusCalculator->calculate($firstArgument, $secondArgument) . "\n";
 echo $divideCalculator->calculate($firstArgument, $secondArgument) . "\n";
 echo $multiplyCalculator->calculate($firstArgument, $secondArgument) . "\n";

@@ -4,5 +4,5 @@ namespace Egorov\Strategy;
 
 interface OperationInterface
 {
-    public function calculate(int $a, int $b): int;
+    public function calculate(int $firstArgument, int $secondArgument): int;
 }

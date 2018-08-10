@@ -5,17 +5,17 @@ namespace Egorov\Strategy;
 class DivideOperation implements OperationInterface
 {
     /**
-     * @param int $a
-     * @param int $b
+     * @param int $firstArgument
+     * @param int $secondArgument
      *
      * @return int
      */
-    public function calculate(int $a, int $b): int
+    public function calculate(int $firstArgument, int $secondArgument): int
     {
-        if ($b === 0) {
+        if ($secondArgument === 0) {
             throw new \RuntimeException('деление на 0');
         }
 
-        return ($a / $b);
+        return ($firstArgument / $secondArgument);
     }
 }

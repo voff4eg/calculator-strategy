@@ -5,13 +5,13 @@ namespace Egorov\Strategy;
 class MinusOperation implements OperationInterface
 {
     /**
-     * @param int $a
-     * @param int $b
+     * @param int $firstArgument
+     * @param int $secondArgument
      *
      * @return int
      */
-    public function calculate(int $a, int $b): int
+    public function calculate(int $firstArgument, int $secondArgument): int
     {
-        return ($a - $b);
+        return ($firstArgument - $secondArgument);
     }
 }
