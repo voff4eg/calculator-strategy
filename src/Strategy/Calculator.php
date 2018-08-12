@@ -8,32 +8,15 @@ class Calculator
     private $strategy;
 
     /**
-     * @param string $operation
-     */
-    public function __construct(string $operation)
-    {
-        $this->strategy = $this->getStrategy($operation);
-    }
-
-    /**
-     * @param string $operation
+     * @param OperationInterface $strategy
      *
-     * @return OperationInterface
+     * @return $this
      */
-    private function getStrategy(string $operation): OperationInterface
+    public function setStrategy(OperationInterface $strategy)
     {
-        switch ($operation) {
-            case '+':
-                return new PlusOperation();
-            case '-':
-                return new MinusOperation();
-            case '*':
-                return new MultiplyOperation();
-            case '/':
-                return new DivideOperation();
-            default:
-                throw new \RuntimeException('no operation');
-        }
+        $this->strategy = $strategy;
+
+        return $this;
     }
 
     /**
@@ -44,6 +27,10 @@ class Calculator
      */
     public function calculate(int $firstArgument, int $secondArgument): int
     {
+        if (!$this->strategy) {
+            throw new \RuntimeException('Не установлена стратегия!');
+        }
+
         return $this->strategy->calculate($firstArgument, $secondArgument);
     }
 }

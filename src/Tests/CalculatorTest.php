@@ -3,6 +3,10 @@
 namespace Egorov\Tests;
 
 use Egorov\Strategy\Calculator;
+use Egorov\Strategy\DivideOperation;
+use Egorov\Strategy\MultiplyOperation;
+use Egorov\Strategy\PercentOperation;
+use Egorov\Strategy\PlusOperation;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
@@ -13,13 +17,13 @@ class CalculatorTest extends TestCase
      */
     final public function testPlusTwoNumbers(): void
     {
-        $sum = new Calculator('+');
+        $calculator = new Calculator();
         $firstArgument = random_int(0, 10000);
         $secondArgument = random_int(0, 10000);
 
         $this->assertEquals(
             $firstArgument + $secondArgument,
-            $sum->calculate($firstArgument, $secondArgument)
+            $calculator->setStrategy(new PlusOperation())->calculate($firstArgument, $secondArgument)
         );
     }
 
@@ -28,13 +32,13 @@ class CalculatorTest extends TestCase
      */
     final public function testMinusTwoNumbers(): void
     {
-        $sum = new Calculator('-');
+        $calculator = new Calculator();
         $firstArgument = random_int(0, 10000);
         $secondArgument = random_int(0, 10000);
 
         $this->assertEquals(
             $firstArgument - $secondArgument,
-            $sum->calculate($firstArgument, $secondArgument)
+            $calculator->calculate($firstArgument, $secondArgument)
         );
     }
 
@@ -43,13 +47,13 @@ class CalculatorTest extends TestCase
      */
     final public function testMultiplyTwoNumbers(): void
     {
-        $sum = new Calculator('*');
+        $calculator = new Calculator();
         $firstArgument = random_int(0, 10000);
         $secondArgument = random_int(0, 10000);
 
         $this->assertEquals(
             $firstArgument * $secondArgument,
-            $sum->calculate($firstArgument, $secondArgument)
+            $calculator->setStrategy(new MultiplyOperation())->calculate($firstArgument, $secondArgument)
         );
     }
 
@@ -58,13 +62,13 @@ class CalculatorTest extends TestCase
      */
     final public function testDivideTwoNumbers(): void
     {
-        $sum = new Calculator('/');
+        $calculator = new Calculator();
         $firstArgument = random_int(0, 10000);
         $secondArgument = random_int(0, 10000);
 
         $this->assertEquals(
             floor($firstArgument / $secondArgument),
-            $sum->calculate($firstArgument, $secondArgument)
+            $calculator->setStrategy(new DivideOperation())->calculate($firstArgument, $secondArgument)
         );
     }
 
@@ -73,11 +77,26 @@ class CalculatorTest extends TestCase
      */
     final public function testDivideByZero(): void
     {
-        $sum = new Calculator('/');
+        $calculator = new Calculator();
         $firstArgument = random_int(0, 10000);
         $secondArgument = 0;
 
         $this->expectException(RuntimeException::class);
-        $sum->calculate($firstArgument, $secondArgument);
+        $calculator->setStrategy(new DivideOperation())->calculate($firstArgument, $secondArgument);
+    }
+
+    /**
+     * @throws \Exception
+     */
+    final public function testCalculatePercent(): void
+    {
+        $calculator = new Calculator();
+        $number = random_int(0, 10000);
+        $percentArgument = random_int(0, 100);
+
+        $this->assertEquals(
+            ($number / 100) * $percentArgument,
+            $calculator->setStrategy(new PercentOperation())->calculate($number, $percentArgument)
+        );
     }
 }

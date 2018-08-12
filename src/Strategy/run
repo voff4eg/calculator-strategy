@@ -2,18 +2,30 @@
 <?php
 
 use Egorov\Strategy\Calculator;
+use Egorov\Strategy\DivideOperation;
+use Egorov\Strategy\MinusOperation;
+use Egorov\Strategy\MultiplyOperation;
+use Egorov\Strategy\PercentOperation;
+use Egorov\Strategy\PlusOperation;
 
 require __DIR__ . '/../../vendor/autoload.php';
-
-$plusCalculator = new Calculator('+');
-$minusCalculator = new Calculator('-');
-$divideCalculator = new Calculator('/');
-$multiplyCalculator = new Calculator('*');
 
 $firstArgument = 17;
 $secondArgument = 25;
 
-echo $plusCalculator->calculate($firstArgument, $secondArgument) . "\n";
-echo $minusCalculator->calculate($firstArgument, $secondArgument) . "\n";
-echo $divideCalculator->calculate($firstArgument, $secondArgument) . "\n";
-echo $multiplyCalculator->calculate($firstArgument, $secondArgument) . "\n";
+$calculator = new Calculator();
+
+echo $calculator->setStrategy(new PlusOperation())
+    ->calculate($firstArgument, $secondArgument);
+
+echo $calculator->setStrategy(new MinusOperation())
+    ->calculate($firstArgument, $secondArgument);
+
+echo $calculator->setStrategy(new MultiplyOperation())
+    ->calculate($firstArgument, $secondArgument);
+
+echo $calculator->setStrategy(new DivideOperation())
+    ->calculate($firstArgument, $secondArgument);
+
+echo $calculator->setStrategy(new PercentOperation())
+    ->calculate($firstArgument, $secondArgument);
