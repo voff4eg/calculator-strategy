@@ -4,6 +4,7 @@ namespace Egorov\Tests;
 
 use Egorov\Strategy\Calculator;
 use Egorov\Strategy\DivideOperation;
+use Egorov\Strategy\MinusOperation;
 use Egorov\Strategy\MultiplyOperation;
 use Egorov\Strategy\PercentOperation;
 use Egorov\Strategy\PlusOperation;
@@ -38,7 +39,7 @@ class CalculatorTest extends TestCase
 
         $this->assertEquals(
             $firstArgument - $secondArgument,
-            $calculator->calculate($firstArgument, $secondArgument)
+            $calculator->setStrategy(new MinusOperation())->calculate($firstArgument, $secondArgument)
         );
     }
 

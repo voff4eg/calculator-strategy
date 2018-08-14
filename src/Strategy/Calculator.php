@@ -23,9 +23,9 @@ class Calculator
      * @param int $firstArgument
      * @param int $secondArgument
      *
-     * @return int
+     * @return int|float
      */
-    public function calculate(int $firstArgument, int $secondArgument): int
+    public function calculate(int $firstArgument, int $secondArgument)
     {
         if (!$this->strategy) {
             throw new \RuntimeException('Не установлена стратегия!');

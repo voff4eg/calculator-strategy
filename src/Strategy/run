@@ -16,16 +16,16 @@ $secondArgument = 25;
 $calculator = new Calculator();
 
 echo $calculator->setStrategy(new PlusOperation())
-    ->calculate($firstArgument, $secondArgument);
+    ->calculate($firstArgument, $secondArgument) . "\n";
 
 echo $calculator->setStrategy(new MinusOperation())
-    ->calculate($firstArgument, $secondArgument);
+    ->calculate($firstArgument, $secondArgument) . "\n";
 
 echo $calculator->setStrategy(new MultiplyOperation())
-    ->calculate($firstArgument, $secondArgument);
+    ->calculate($firstArgument, $secondArgument) . "\n";
 
 echo $calculator->setStrategy(new DivideOperation())
-    ->calculate($firstArgument, $secondArgument);
+    ->calculate($firstArgument, $secondArgument) . "\n";
 
 echo $calculator->setStrategy(new PercentOperation())
-    ->calculate($firstArgument, $secondArgument);
+    ->calculate($firstArgument, $secondArgument) . "\n";

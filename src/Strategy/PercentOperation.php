@@ -8,9 +8,9 @@ class PercentOperation implements OperationInterface
      * @param int $number
      * @param int $percent
      *
-     * @return int
+     * @return float
      */
-    public function calculate(int $number, int $percent): int
+    public function calculate(int $number, int $percent): float
     {
         return (($number / 100) * $percent);
     }
